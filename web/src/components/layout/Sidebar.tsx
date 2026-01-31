@@ -144,7 +144,7 @@ export function SidebarContent({ onItemClick }: SidebarContentProps) {
 
 export function Sidebar() {
   return (
-    <aside className="fixed top-14 left-0 w-60 h-[calc(100vh-56px)] bg-(--color-bg-primary) overflow-y-auto scrollbar-thin">
+    <aside className="hidden md:block fixed top-14 left-0 w-60 h-[calc(100vh-56px)] bg-(--color-bg-primary) overflow-y-auto scrollbar-thin">
       <SidebarContent />
     </aside>
   );

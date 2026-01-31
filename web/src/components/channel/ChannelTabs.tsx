@@ -1,40 +1,45 @@
 import { cn } from '../../utils';
 import { SearchIcon } from '../icons';
 
-interface Tab {
-  id: string;
-  label: string;
-}
+
+
+const channelTabs = [
+  { id: "home", label: "Home" },
+  { id: "videos", label: "Videos" },
+  { id: "shorts", label: "Shorts" },
+];
+
 
 interface ChannelTabsProps {
-  tabs: Tab[];
   activeTab: string;
   onTabChange?: (tabId: string) => void;
 }
 
-export function ChannelTabs({ tabs, activeTab, onTabChange }: ChannelTabsProps) {
+export function ChannelTabs({ activeTab, onTabChange }: ChannelTabsProps) {
   return (
     <div className="flex items-center border-b border-(--color-border-light)">
-      <nav className="flex gap-1">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => onTabChange?.(tab.id)}
-            className={cn(
-              'px-6 py-3 text-sm font-medium transition-colors relative',
-              activeTab === tab.id
-                ? 'text-(--color-text-primary)'
-                : 'text-(--color-text-secondary) hover:text-(--color-text-primary)'
-            )}
-          >
-            {tab.label}
-            {activeTab === tab.id && (
-              <div className="absolute -bottom-px left-0 right-0 h-0.5 bg-(--color-text-primary)" />
-            )}
-          </button>
-        ))}
+      <nav className="flex-1 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-1">
+          {channelTabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => onTabChange?.(tab.id)}
+              className={cn(
+                'px-4 sm:px-6 py-3 text-sm font-medium transition-colors relative whitespace-nowrap',
+                activeTab === tab.id
+                  ? 'text-(--color-text-primary)'
+                  : 'text-(--color-text-secondary) hover:text-(--color-text-primary)'
+              )}
+            >
+              {tab.label}
+              {activeTab === tab.id && (
+                <div className="absolute -bottom-px left-0 right-0 h-0.5 bg-(--color-text-primary)" />
+              )}
+            </button>
+          ))}
+        </div>
       </nav>
-      <button className="p-3 ml-auto text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors">
+      <button className="p-3 text-(--color-text-secondary) hover:text-(--color-text-primary) transition-colors shrink-0 hidden sm:block">
         <SearchIcon />
       </button>
     </div>

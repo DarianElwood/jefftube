@@ -3,7 +3,7 @@ import { cn } from '../../utils';
 interface AvatarProps {
   src?: string;
   alt?: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
   className?: string;
 }
 
@@ -13,6 +13,7 @@ const sizeClasses = {
   md: 'w-10 h-10',
   lg: 'w-20 h-20',
   xl: 'w-32 h-32',
+  full: 'w-full h-full',
 };
 
 export function Avatar({ src, alt = '', size = 'md', className }: AvatarProps) {

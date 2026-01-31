@@ -7,11 +7,6 @@ import { VideoCarousel } from "../ui/VideoCarousel";
 import { useData } from "../../hooks/useData";
 import { getThumbnailUrl } from "../../utils/thumbnail";
 
-const channelTabs = [
-  { id: "home", label: "Home" },
-  { id: "videos", label: "Videos" },
-  { id: "shorts", label: "Shorts" },
-];
 
 export function ChannelPage() {
   const [activeTab, setActiveTab] = useState("home");
@@ -21,8 +16,8 @@ export function ChannelPage() {
   const olderVideos = videos.slice(12, 24);
 
   return (
-    <main className="ml-60 pt-14 min-h-screen bg-(--color-bg-primary)">
-      <div className="max-w-[1284px] mx-auto px-6 py-4">
+    <main className="md:ml-60 pt-14 min-h-screen bg-(--color-bg-primary)">
+      <div className="max-w-[1284px] mx-auto px-4 md:px-6 py-4">
         <ChannelBanner src="https://assets.getkino.com/photos/EFTA00003445-0.png" />
 
         <ChannelInfo
@@ -36,7 +31,6 @@ export function ChannelPage() {
         />
 
         <ChannelTabs
-          tabs={channelTabs}
           activeTab={activeTab}
           onTabChange={setActiveTab}
         />

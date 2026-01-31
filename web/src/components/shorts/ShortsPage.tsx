@@ -56,10 +56,13 @@ export function ShortsPage() {
   return (
     <div className="min-h-screen bg-(--color-bg-primary) text-(--color-text-primary)">
       <Header />
-      <Sidebar />
+      {/* Hide sidebar on mobile/tablet */}
+      <div className="hidden lg:block">
+        <Sidebar />
+      </div>
       <main
         ref={containerRef}
-        className="ml-60 mt-14 h-[calc(100vh-56px)] overflow-y-scroll snap-y snap-mandatory scrollbar-hide"
+        className="lg:ml-60 mt-14 h-[calc(100vh-56px)] overflow-y-scroll snap-y snap-mandatory scrollbar-hide"
       >
         {/* Top spacer for virtualization */}
         {activeIndex > BUFFER_SIZE && (
@@ -85,8 +88,8 @@ export function ShortsPage() {
         )}
       </main>
 
-      {/* Navigation buttons */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-50">
+      {/* Navigation buttons - hidden on mobile */}
+      <div className="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 flex-col gap-3 z-50">
         <button
           onClick={goPrev}
           disabled={activeIndex === 0}

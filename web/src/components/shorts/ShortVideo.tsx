@@ -116,10 +116,10 @@ export function ShortVideo({ video, isActive }: ShortVideoProps) {
   const thumbnailUrl = getThumbnailUrl(video.filename);
 
   return (
-    <div className="h-[calc(100vh-56px)] snap-start flex items-center justify-center pt-8 pb-4">
-      <div className="flex items-end gap-3 h-full max-h-[calc(100vh-120px)]">
+    <div className="h-[calc(100vh-56px)] snap-start flex items-center justify-center px-2 sm:px-4 pt-4 sm:pt-8 pb-2 sm:pb-4">
+      <div className="flex items-end gap-2 sm:gap-3 h-full max-h-[calc(100vh-80px)] sm:max-h-[calc(100vh-120px)]">
         {/* Video container */}
-        <div className="relative h-full aspect-9/16 bg-black rounded-2xl overflow-hidden">
+        <div className="relative h-full aspect-9/16 bg-black rounded-xl sm:rounded-2xl overflow-hidden max-w-[calc(100vw-80px)] sm:max-w-none">
           {/* Poster image when not active */}
           {showPoster && (
             <img
@@ -146,13 +146,13 @@ export function ShortVideo({ video, isActive }: ShortVideoProps) {
             className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-300 ${showPlayPauseOverlay ? "opacity-100" : "opacity-0"
               }`}
           >
-            <div className="w-20 h-20 rounded-full bg-black/60 flex items-center justify-center">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-black/60 flex items-center justify-center">
               {overlayIcon === "play" ? (
-                <svg viewBox="0 0 24 24" className="w-10 h-10 text-white ml-1" fill="currentColor">
+                <svg viewBox="0 0 24 24" className="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1" fill="currentColor">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               ) : (
-                <svg viewBox="0 0 24 24" className="w-10 h-10 text-white" fill="currentColor">
+                <svg viewBox="0 0 24 24" className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="currentColor">
                   <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
                 </svg>
               )}
@@ -160,17 +160,17 @@ export function ShortVideo({ video, isActive }: ShortVideoProps) {
           </div>
 
           {/* Top controls */}
-          <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between bg-gradient-to-b from-black/50 to-transparent">
-            <div className="flex items-center gap-2">
+          <div className="absolute top-0 left-0 right-0 p-2 sm:p-3 flex items-center justify-between bg-gradient-to-b from-black/50 to-transparent">
+            <div className="flex items-center gap-1 sm:gap-2">
               <button
                 onClick={togglePlay}
-                className="w-10 h-10 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors text-white"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors text-white"
               >
                 {isPlaying ? <PauseIcon /> : <PlayIcon />}
               </button>
               <button
                 onClick={toggleMute}
-                className="w-10 h-10 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors text-white"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors text-white"
               >
                 {isMuted ? <VolumeMutedIcon /> : <VolumeIcon />}
               </button>
@@ -178,25 +178,25 @@ export function ShortVideo({ video, isActive }: ShortVideoProps) {
           </div>
 
           {/* Bottom overlay with channel info and title */}
-          <div className="absolute bottom-0 left-0 right-0 p-3 pb-4 bg-gradient-to-t from-black/70 to-transparent">
+          <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 pb-3 sm:pb-4 bg-gradient-to-t from-black/70 to-transparent">
             {/* Channel info */}
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-1 sm:mb-2">
               <Link to="/">
                 <Avatar
                   src="https://assets.getkino.com/photos/EFTA00003692-0.png"
                   size="sm"
                 />
               </Link>
-              <Link to="/" className="font-medium text-sm hover:underline text-white">
+              <Link to="/" className="font-medium text-xs sm:text-sm hover:underline text-white truncate max-w-[100px] sm:max-w-none">
                 @jefferyepstein
               </Link>
-              <button className="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:bg-white/90">
+              <button className="px-2 sm:px-3 py-1 bg-white text-black rounded-full text-xs sm:text-sm font-medium hover:bg-white/90 shrink-0">
                 Subscribe
               </button>
             </div>
 
             {/* Video title */}
-            <p className="text-sm text-white line-clamp-2">{video.title}</p>
+            <p className="text-xs sm:text-sm text-white line-clamp-2">{video.title}</p>
           </div>
 
           {/* Progress bar */}
@@ -209,12 +209,12 @@ export function ShortVideo({ video, isActive }: ShortVideoProps) {
         </div>
 
         {/* Action buttons - outside video on the right */}
-        <div className="flex flex-col items-center gap-4 pb-16">
+        <div className="flex flex-col items-center gap-2 sm:gap-4 pb-8 sm:pb-16">
           <ActionButton icon={<LikeIcon />} label="2.6 mn" />
           <ActionButton icon={<DislikeIcon />} label="Dislike" />
           <ActionButton icon={<CommentIcon />} label="11 011" />
           <ActionButton icon={<ShareIcon />} label="Share" />
-          <button className="w-12 h-12 rounded-full bg-(--color-bg-secondary) hover:bg-(--color-bg-hover) flex items-center justify-center transition-colors">
+          <button className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-(--color-bg-secondary) hover:bg-(--color-bg-hover) flex items-center justify-center transition-colors">
             <MoreVertIcon />
           </button>
         </div>
@@ -225,11 +225,11 @@ export function ShortVideo({ video, isActive }: ShortVideoProps) {
 
 function ActionButton({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
-    <button className="flex flex-col items-center gap-1">
-      <div className="w-12 h-12 rounded-full bg-(--color-bg-secondary) hover:bg-(--color-bg-hover) flex items-center justify-center transition-colors">
+    <button className="flex flex-col items-center gap-0.5 sm:gap-1">
+      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-(--color-bg-secondary) hover:bg-(--color-bg-hover) flex items-center justify-center transition-colors">
         {icon}
       </div>
-      <span className="text-xs text-(--color-text-secondary)">{label}</span>
+      <span className="text-[10px] sm:text-xs text-(--color-text-secondary)">{label}</span>
     </button>
   );
 }
