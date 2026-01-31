@@ -1,33 +1,35 @@
-import { useState } from 'react';
-import { Avatar } from '../ui/Avatar';
-import { IconButton } from '../ui/IconButton';
-import { ThemeToggle } from '../ui/ThemeToggle';
-import { InfoModal } from '../ui/InfoModal';
+import { useState } from "react";
+import { Link } from "react-router";
+import { Avatar } from "../ui/Avatar";
+import { IconButton } from "../ui/IconButton";
+import { ThemeToggle } from "../ui/ThemeToggle";
+import { InfoModal } from "../ui/InfoModal";
+import { Drawer } from "../ui/Drawer";
+import { SidebarContent } from "./Sidebar";
 import {
   MenuIcon,
   JeffTubeLogo,
   SearchIcon,
-  MicIcon,
-  CreateIcon,
   NotificationIcon,
   KeyboardIcon,
   QuestionIcon,
-} from '../icons';
+} from "../icons";
 
 export function Header() {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 h-14 bg-(--color-bg-primary) flex items-center justify-between px-4 z-50">
         {/* Left section */}
         <div className="flex items-center gap-4">
-          <IconButton ariaLabel="Menu">
+          <IconButton ariaLabel="Menu" onClick={() => setIsDrawerOpen(true)}>
             <MenuIcon />
           </IconButton>
-          <a href="/" className="flex items-center gap-1">
+          <Link to="/" className="flex items-center gap-1">
             <JeffTubeLogo />
-          </a>
+          </Link>
         </div>
 
         {/* Center section - Search */}
@@ -47,17 +49,10 @@ export function Header() {
               <SearchIcon />
             </button>
           </div>
-          <IconButton ariaLabel="Search with your voice" className="bg-(--color-bg-secondary)">
-            <MicIcon />
-          </IconButton>
         </div>
 
         {/* Right section */}
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-2 px-3 py-1.5 hover:bg-(--color-bg-hover) rounded-full transition-colors">
-            <CreateIcon />
-            <span className="text-sm font-medium">Create</span>
-          </button>
           <IconButton ariaLabel="Notifications">
             <NotificationIcon />
           </IconButton>
@@ -70,6 +65,21 @@ export function Header() {
           </button>
         </div>
       </header>
+
+      {/* Sidebar Drawer */}
+      <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+        <div className="h-14 flex items-center gap-4 px-4 border-b border-(--color-border-light)">
+          <IconButton ariaLabel="Close menu" onClick={() => setIsDrawerOpen(false)}>
+            <MenuIcon />
+          </IconButton>
+          <Link to="/" onClick={() => setIsDrawerOpen(false)}>
+            <JeffTubeLogo />
+          </Link>
+        </div>
+        <div className="h-[calc(100vh-56px)] overflow-y-auto scrollbar-thin">
+          <SidebarContent onItemClick={() => setIsDrawerOpen(false)} />
+        </div>
+      </Drawer>
 
       <InfoModal isOpen={isInfoModalOpen} onClose={() => setIsInfoModalOpen(false)} />
     </>

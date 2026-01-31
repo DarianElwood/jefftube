@@ -1,10 +1,23 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import { DataProvider } from "./contexts/DataContext";
+import App from "./App.tsx";
+import { VideoPage } from "./components/video/VideoPage";
+import "./index.css";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <DataProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/watch/:videoId" element={<VideoPage />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </DataProvider>
+  </StrictMode>
+);

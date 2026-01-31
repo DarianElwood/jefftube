@@ -2,7 +2,7 @@ import { cn } from '../../utils';
 
 interface AvatarProps {
   src?: string;
-  alt: string;
+  alt?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
 }
@@ -15,7 +15,7 @@ const sizeClasses = {
   xl: 'w-32 h-32',
 };
 
-export function Avatar({ src, alt, size = 'md', className }: AvatarProps) {
+export function Avatar({ src, alt = '', size = 'md', className }: AvatarProps) {
   return (
     <div
       className={cn(

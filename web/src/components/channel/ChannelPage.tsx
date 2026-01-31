@@ -64,6 +64,7 @@ export function ChannelPage() {
               {recentVideos.map((video) => (
                 <VideoCard
                   key={video.id}
+                  videoId={video.id}
                   thumbnail={getThumbnailUrl(video.id)}
                   title={video.title}
                   duration={video.length}
@@ -81,6 +82,7 @@ export function ChannelPage() {
               {olderVideos.map((video) => (
                 <VideoCard
                   key={video.id}
+                  videoId={video.id}
                   thumbnail={getThumbnailUrl(video.id)}
                   title={video.title}
                   duration={video.length}
@@ -99,6 +101,7 @@ export function ChannelPage() {
               {videos.map((video) => (
                 <VideoCard
                   key={video.id}
+                  videoId={video.id}
                   thumbnail={getThumbnailUrl(video.id)}
                   title={video.title}
                   duration={video.length}
