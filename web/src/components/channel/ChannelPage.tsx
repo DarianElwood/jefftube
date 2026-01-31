@@ -49,7 +49,7 @@ export function ChannelPage() {
                 <VideoCard
                   key={video.id}
                   videoId={video.id}
-                  thumbnail={getThumbnailUrl(video.id)}
+                  thumbnail={getThumbnailUrl(video.filename)}
                   title={video.title}
                   duration={video.length}
                   views="1.2K"
@@ -67,7 +67,7 @@ export function ChannelPage() {
                 <VideoCard
                   key={video.id}
                   videoId={video.id}
-                  thumbnail={getThumbnailUrl(video.id)}
+                  thumbnail={getThumbnailUrl(video.filename)}
                   title={video.title}
                   duration={video.length}
                   views="856"
@@ -86,7 +86,7 @@ export function ChannelPage() {
                 <VideoCard
                   key={video.id}
                   videoId={video.id}
-                  thumbnail={getThumbnailUrl(video.id)}
+                  thumbnail={getThumbnailUrl(video.filename)}
                   title={video.title}
                   duration={video.length}
                   views="1.2K"

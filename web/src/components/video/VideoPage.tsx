@@ -33,7 +33,7 @@ export function VideoPage() {
           <div className="flex-1 min-w-0">
             <VideoPlayer
               src={getVideoUrl(video.filename)}
-              poster={getThumbnailUrl(video.id)}
+              poster={getThumbnailUrl(video.filename)}
             />
             <VideoInfo
               title={video.title}

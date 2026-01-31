@@ -113,13 +113,13 @@ export function ShortVideo({ video, isActive }: ShortVideoProps) {
     setIsMuted(videoEl.muted);
   };
 
-  const thumbnailUrl = getThumbnailUrl(video.id);
+  const thumbnailUrl = getThumbnailUrl(video.filename);
 
   return (
     <div className="h-[calc(100vh-56px)] snap-start flex items-center justify-center pt-8 pb-4">
       <div className="flex items-end gap-3 h-full max-h-[calc(100vh-120px)]">
         {/* Video container */}
-        <div className="relative h-full aspect-[9/16] bg-black rounded-2xl overflow-hidden">
+        <div className="relative h-full aspect-9/16 bg-black rounded-2xl overflow-hidden">
           {/* Poster image when not active */}
           {showPoster && (
             <img
