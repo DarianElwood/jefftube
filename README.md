@@ -1,3 +1,3 @@
 # Jeff Epsteins Youtube channel
 
-![Project Screenshot](@page.png)
+![Project Screenshot](./page.png)
