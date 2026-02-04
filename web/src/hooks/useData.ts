@@ -11,6 +11,7 @@ export interface Video {
   hasThumbnail: boolean;
   is_shorts: boolean;
   playlist: string | null;
+  commentCount?: number;
 }
 
 export interface DataContextType {

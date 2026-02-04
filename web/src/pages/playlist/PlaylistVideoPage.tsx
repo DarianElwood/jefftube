@@ -9,6 +9,7 @@ import { useData, type Video } from "../../hooks/useData";
 import { getVideoUrl, getThumbnailUrl } from "../../utils/thumbnail";
 import { formatDuration, cn } from "../../utils";
 import { MoreVertIcon, PlayIcon } from "../../components/icons";
+import { NotFoundPageContent } from "../../components/NotFoundPage";
 
 function formatPlaylistName(id: string): string {
   return id
@@ -139,9 +140,7 @@ export function PlaylistVideoPage() {
     return (
       <div className="min-h-screen bg-(--color-bg-primary) text-(--color-text-primary)">
         <Header />
-        <main className="pt-14 px-6">
-          <p className="text-center py-20">Video or playlist not found</p>
-        </main>
+        <NotFoundPageContent />
       </div>
     );
   }

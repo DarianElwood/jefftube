@@ -8,6 +8,7 @@ import { VideoSidebar } from "./VideoSidebar";
 import { CommentSection } from "../comments";
 import { useData } from "../../hooks/useData";
 import { getVideoUrl, getThumbnailUrl } from "../../utils/thumbnail";
+import { NotFoundPageContent } from "../NotFoundPage";
 
 export function VideoPage() {
   const { videoId } = useParams<{ videoId: string }>();
@@ -29,9 +30,7 @@ export function VideoPage() {
     return (
       <div className="min-h-screen bg-(--color-bg-primary) text-(--color-text-primary)">
         <Header />
-        <main className="pt-14 px-6">
-          <p className="text-center py-20">Video not found</p>
-        </main>
+        <NotFoundPageContent />
       </div>
     );
   }
