@@ -108,7 +108,7 @@ export function ChannelPage() {
   return (
     <>
       <Helmet>
-        <title>Jeffery Epstein - JeffTube</title>
+        <title>JeffTube</title>
         <meta name="description" content="Official Jeffery Epstein JeffTube channel. Watch the latest videos and subscribe for more content." />
 
         {/* Open Graph / Facebook */}
