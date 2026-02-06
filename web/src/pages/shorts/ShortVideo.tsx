@@ -237,9 +237,6 @@ export function ShortVideo({ video, isActive }: ShortVideoProps) {
                 <Link to="/" className="font-semibold text-sm sm:text-base hover:underline text-white truncate max-w-[120px] sm:max-w-none">
                   @jefferyepstein
                 </Link>
-                <button className="px-3 sm:px-4 py-1.5 bg-white text-black rounded-full text-sm sm:text-base font-semibold hover:bg-white/90 shrink-0">
-                  Subscribe
-                </button>
               </div>
 
               {/* Video title */}
