@@ -13,6 +13,7 @@ const app = new Hono();
 // Middleware
 app.use("*", honoLogger());
 app.use("*", cors());
+// Apply default rate limiter to all API routes, specific routes will have their own rate limiters as needed
 app.use("/api/*", defaultRateLimiter);
 
 
