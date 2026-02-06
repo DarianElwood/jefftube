@@ -125,7 +125,7 @@ commentsRoutes.post("/videos/:videoId/comments", async (c) => {
     return c.json({ error: "Comment must be 300 characters or less" }, 400);
   }
 
-  if (content.includes('hamburger891')) {
+  if (content.includes('hamburger891') || content === 'Yo') {
     return c.json({ error: "Stop you weirdo" }, 400);
   }
 
