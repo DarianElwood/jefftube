@@ -124,6 +124,10 @@ commentsRoutes.post("/videos/:videoId/comments", async (c) => {
     return c.json({ error: "Comment must be 300 characters or less" }, 400);
   }
 
+  if (content.includes('hamburger891')) {
+    return c.json({ error: "Stop you weirdo" }, 400);
+  }
+
   // Rate limit: max 3 comments per user per video per day
   const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   const recentComments = await db
