@@ -4,6 +4,7 @@ import { db } from "../db";
 import { comments, commentLikes, users } from "../db/schema";
 import { getClientIp, getOrCreateUser } from "./users";
 import { recaptcha } from "../middleware/recaptcha";
+import { logger } from "../logger";
 
 export const commentsRoutes = new Hono();
 
@@ -127,6 +128,7 @@ commentsRoutes.post("/videos/:videoId/comments", recaptcha, async (c) => {
   }
 
   if (content.includes('hamburger891') || content === 'Yo') {
+    logger.warn({ videoId, userId: user.id }, "comment blocked by spam filter");
     return c.json({ error: "Stop you weirdo" }, 400);
   }
 
@@ -144,6 +146,7 @@ commentsRoutes.post("/videos/:videoId/comments", recaptcha, async (c) => {
     );
 
   if (recentComments[0].count >= 3) {
+    logger.warn({ videoId, userId: user.id }, "comment rate limited");
     return c.json(
       { error: "You have left too many comments already" },
       429
@@ -159,6 +162,8 @@ commentsRoutes.post("/videos/:videoId/comments", recaptcha, async (c) => {
       content: content.trim(),
     })
     .returning();
+
+  logger.info({ videoId, userId: user.id }, "comment created");
 
   return c.json(
     {

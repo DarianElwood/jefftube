@@ -1,4 +1,5 @@
 import { createMiddleware } from "hono/factory";
+import { logger } from "../logger";
 
 const VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
 
@@ -28,7 +29,7 @@ export const recaptcha = createMiddleware(async (c, next) => {
       return c.json({ error: "reCAPTCHA verification failed" }, 403);
     }
   } catch (err) {
-    console.error("reCAPTCHA verification error:", err);
+    logger.error({ err }, "reCAPTCHA verification error");
     return c.json({ error: "reCAPTCHA verification error" }, 500);
   }
 

@@ -1,7 +1,8 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { logger } from "hono/logger";
+import { logger as honoLogger } from "hono/logger";
 import { rateLimiter } from "hono-rate-limiter";
+import { logger } from "./logger";
 import { usersRoutes } from "./routes/users";
 import { videosRoutes } from "./routes/videos";
 import { commentsRoutes } from "./routes/comments";
@@ -10,7 +11,7 @@ import { videoLikesRoutes } from "./routes/videoLikes";
 const app = new Hono();
 
 // Middleware
-app.use("*", logger());
+app.use("*", honoLogger());
 app.use("*", cors());
 app.use(
   "/api/*",
@@ -39,14 +40,13 @@ app.notFound((c) => {
 
 // Error handler
 app.onError((err, c) => {
-  console.error(err);
+  logger.error({ err }, "unhandled error");
   return c.json({ error: "Internal server error" }, 500);
 });
 
 const port = parseInt(Bun.env.PORT || "3001", 10);
 
-
-console.log(`Server running at http://localhost:${port}`);
+logger.info({ port }, `server running at http://localhost:${port}`);
 
 export default {
   port,

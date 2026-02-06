@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { desc, eq, sql } from "drizzle-orm";
 import { db } from "../db";
 import { videos } from "../db/schema";
+import { logger } from "../logger";
 
 export const videosRoutes = new Hono();
 
@@ -22,6 +23,7 @@ videosRoutes.post("/videos/:id/view", async (c) => {
     .returning();
 
   if (result.length === 0) {
+    logger.warn({ videoId }, "video not found");
     return c.json({ error: "Video not found" }, 404);
   }
 
